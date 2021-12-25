@@ -24,6 +24,7 @@ class Editor{
         void decrementNumLines();
         void incrementCurrentPageNode();
         void decrementCurrentPageNode();
+        void setCurrentPageNode(ListNode* node);
 
         void appendLine(const std::string& line);        
 

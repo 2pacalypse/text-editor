@@ -3,6 +3,7 @@
 #include "../include/ListNode.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <iomanip>
 
 Editor::Editor(){
     this->list = new LinkedList();
@@ -70,15 +71,27 @@ void Editor::decrementCurrentPageNode(){
     this->currentPageNode = temp;
 }
 
+void Editor::setCurrentPageNode(ListNode* node){
+    this->currentPageNode = node;
+}
 
 void Editor::printCurrentPage() const{
     system("clear||cls");
     int i = 0;
     ListNode* temp = this->currentPageNode;
+    int lineNumber = this->currentPage * 10 + 1;
     while (i < 10 && temp != this->list->getTail()){
-        std::cout << temp->getText() << '\n';
+        std::cout << std::left << std::setw(10) << std::to_string(lineNumber) + ')';
+        std::cout<< temp->getText() << '\n';
         i += 1;
+        lineNumber += 1;
         temp = temp->getNext();
+    }
+    while (i < 10){
+        std::cout << std::left << std::setw(10) << std::to_string(lineNumber) + ')';
+        std::cout<< "####" << '\n';
+        i += 1;
+        lineNumber += 1;
     }
 }
 
