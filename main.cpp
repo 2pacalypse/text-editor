@@ -5,6 +5,7 @@
 #include "include/CommandPrev.hpp"
 #include "include/CommandReplace.hpp"
 #include "include/CommandDelete.hpp"
+#include "include/CommandInsert.hpp"
 #include <stack>
 #include <string>
 #include <iostream>
@@ -28,6 +29,12 @@ int main(){
         }else if (commandName.compare("save") == 0){
 
         }else if (commandName.compare("insert") == 0){
+            size_t n;
+            std::string text;
+            std::cin >> n;
+            std::getline(std::cin, text);
+            command = new CommandInsert(n, text.substr(1));
+            command->apply(editor);
 
         }else if (commandName.compare("delete") == 0){
             size_t n;
