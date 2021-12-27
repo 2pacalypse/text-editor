@@ -1,7 +1,6 @@
 #include "../include/CommandMove.hpp"
 #include "../include/CommandDelete.hpp"
 #include "../include/CommandInsert.hpp"
-#include "../include/CommandReplace.hpp"
 
 CommandMove::CommandMove(size_t n, size_t m){
     this->n = n;
@@ -23,16 +22,10 @@ void CommandMove::apply(Editor* editor){
     }
     
     std::string movedText = temp->getText();
-    temp->setText("");
-    if (this->m > editor->getNumLines()){
-        Command *insertCommand = new CommandInsert(this->m, movedText);
-        insertCommand->apply(editor);
-    }else{
-        Command* replaceCommand = new CommandReplace(this->m, movedText);
-        replaceCommand->apply(editor);
-    }
-
-    
+    Command *deleteCommand = new CommandDelete(this->n);
+    Command *insertCommand = new CommandInsert(this->m, movedText);
+    deleteCommand->apply(editor);
+    insertCommand->apply(editor);
 }
 
 void CommandMove::reverseApply(Editor* editor){
