@@ -1,4 +1,5 @@
 #include "../include/CommandInsert.hpp"
+#include "../include/CommandDelete.hpp"
 
 CommandInsert::CommandInsert(size_t n, const std::string& text){
     this->n = n;
@@ -39,5 +40,6 @@ void CommandInsert::apply(Editor* editor){
 }
 
 void CommandInsert::reverseApply(Editor* editor){
-
+    Command* reverseCommand = new CommandDelete(this->n);
+    reverseCommand->apply(editor);
 }
