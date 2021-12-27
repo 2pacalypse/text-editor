@@ -36,18 +36,21 @@ int main(){
             std::getline(std::cin, text);
             command = new CommandInsert(n, text.substr(1));
             command->apply(editor);
+            commandHistory.push(command);
 
         }else if (commandName.compare("delete") == 0){
             size_t n;
             std::cin >> n;
             command = new CommandDelete(n);
             command->apply(editor);
+            commandHistory.push(command);
 
         }else if (commandName.compare("move") == 0){
             size_t n, m;
             std::cin >> n >> m;
             command = new CommandMove(n,m);
             command->apply(editor);
+            commandHistory.push(command);
 
         }else if (commandName.compare("replace") == 0){
             size_t n;
@@ -56,6 +59,7 @@ int main(){
             std::getline(std::cin, text);
             command = new CommandReplace(n, text.substr(1));
             command->apply(editor);
+            commandHistory.push(command);
 
         }else if (commandName.compare("next") == 0){
             command = new CommandNext();
@@ -66,6 +70,9 @@ int main(){
             command->apply(editor);
 
         }else if (commandName.compare("undo") == 0){
+            Command *lastCommand = commandHistory.top();
+            commandHistory.pop();
+            lastCommand->reverseApply(editor);
 
         }else {
 

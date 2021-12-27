@@ -5,6 +5,7 @@
 class CommandDelete : public Command{
     private:
         size_t n;
+        std::string deletedText;
     public:
         CommandDelete(size_t n);
         void apply(Editor* editor);

@@ -1,8 +1,10 @@
 #include "../include/CommandDelete.hpp"
 #include "../include/ListNode.hpp"
+#include "../include/CommandInsert.hpp"
 
 CommandDelete::CommandDelete(size_t n){
     this->n = n;
+
 }
 void CommandDelete::apply(Editor* editor){
     if (editor->getNumLines() > 0){
@@ -16,6 +18,9 @@ void CommandDelete::apply(Editor* editor){
             i -= 1;
             temp = temp->getPrev();
         }
+
+        this->deletedText = temp->getText();
+
         if (temp == editor->getCurrentPageNode()){
             editor->setCurrentPageNode(temp->getNext());
         }
@@ -28,5 +33,6 @@ void CommandDelete::apply(Editor* editor){
 }
 
 void CommandDelete::reverseApply(Editor* editor){
-
+    Command* reverseCommand = new CommandInsert(this->n, this->deletedText);
+    reverseCommand->apply(editor);
 }
