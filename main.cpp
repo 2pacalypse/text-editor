@@ -6,6 +6,7 @@
 #include "include/CommandReplace.hpp"
 #include "include/CommandDelete.hpp"
 #include "include/CommandInsert.hpp"
+#include "include/CommandMove.hpp"
 #include <stack>
 #include <string>
 #include <iostream>
@@ -43,6 +44,10 @@ int main(){
             command->apply(editor);
 
         }else if (commandName.compare("move") == 0){
+            size_t n, m;
+            std::cin >> n >> m;
+            command = new CommandMove(n,m);
+            command->apply(editor);
 
         }else if (commandName.compare("replace") == 0){
             size_t n;
