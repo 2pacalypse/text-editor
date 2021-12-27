@@ -6,16 +6,16 @@ CommandInsert::CommandInsert(size_t n, const std::string& text){
     this->text = text;
 }
 
-void CommandInsert::apply(Editor* editor){
-        if (editor->getNumLines() < this->n){
-            while (editor->getNumLines() < this->n - 1){
-                editor->appendLine("");
+void CommandInsert::apply(Editor& editor){
+        if (editor.getNumLines() < this->n){
+            while (editor.getNumLines() < this->n - 1){
+                editor.appendLine("");
             }
-            editor->appendLine(this->text);
+            editor.appendLine(this->text);
         }
         else{
-            size_t i = editor->getCurrentPage() * 10 + 1;
-            ListNode* temp = editor->getCurrentPageNode();
+            size_t i = editor.getCurrentPage() * 10 + 1;
+            ListNode* temp = editor.getCurrentPageNode();
             while (i < this->n){
                 i += 1;
                 temp = temp->getNext();
@@ -32,14 +32,14 @@ void CommandInsert::apply(Editor* editor){
             temp->setPrev(node);
 
         
-            if (temp == editor->getCurrentPageNode()){
-                editor->setCurrentPageNode(node);
+            if (temp == editor.getCurrentPageNode()){
+                editor.setCurrentPageNode(node);
             }
-        editor->incrementNumLines();
+        editor.incrementNumLines();
         }
 }
 
-void CommandInsert::reverseApply(Editor* editor){
+void CommandInsert::reverseApply(Editor& editor){
     Command* reverseCommand = new CommandDelete(this->n);
     reverseCommand->apply(editor);
 }

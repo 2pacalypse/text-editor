@@ -4,7 +4,7 @@
 
 class CommandNext : public Command{
     public:
-        void apply(Editor* editor);
-        void reverseApply(Editor* editor);  
+        void apply(Editor& editor);
+        void reverseApply(Editor& editor);  
 };
 #endif

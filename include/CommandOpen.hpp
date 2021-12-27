@@ -7,8 +7,8 @@ class CommandOpen : public Command{
         std::string fileName;
     public:
         CommandOpen(const std::string& filename);
-        void apply(Editor* editor);
-        void reverseApply(Editor* editor);
+        void apply(Editor& editor);
+        void reverseApply(Editor& editor);
 
 };
 #endif

@@ -8,7 +8,7 @@ class CommandReplace : public Command{
         std::string text;
     public:
         CommandReplace(size_t n, const std::string& text);
-        void apply(Editor* editor);
-        void reverseApply(Editor* editor);      
+        void apply(Editor& editor);
+        void reverseApply(Editor& editor);      
 };
 #endif

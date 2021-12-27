@@ -8,8 +8,8 @@ class CommandDelete : public Command{
         std::string deletedText;
     public:
         CommandDelete(size_t n);
-        void apply(Editor* editor);
-        void reverseApply(Editor* editor);
+        void apply(Editor& editor);
+        void reverseApply(Editor& editor);
             
 };
 #endif

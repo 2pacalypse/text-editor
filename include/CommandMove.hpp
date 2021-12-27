@@ -8,7 +8,7 @@ class CommandMove : public Command{
         size_t m;
     public:
         CommandMove(size_t n, size_t m);
-        void apply(Editor* editor);
-        void reverseApply(Editor* editor);  
+        void apply(Editor& editor);
+        void reverseApply(Editor& editor);  
 };
 #endif

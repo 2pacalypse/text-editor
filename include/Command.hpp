@@ -4,7 +4,7 @@
 
 class Command{
     public:
-        virtual void apply(Editor* editor) = 0;
-        virtual void reverseApply(Editor* editor) = 0;
+        virtual void apply(Editor& editor) = 0;
+        virtual void reverseApply(Editor& editor) = 0;
 };
 #endif

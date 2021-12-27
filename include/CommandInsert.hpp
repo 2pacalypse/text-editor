@@ -8,8 +8,8 @@ class CommandInsert : public Command{
         std::string text;
     public:
         CommandInsert(size_t n, const std::string& text);
-        void apply(Editor* editor);
-        void reverseApply(Editor* editor);
+        void apply(Editor& editor);
+        void reverseApply(Editor& editor);
             
 };
 #endif

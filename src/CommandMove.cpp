@@ -9,9 +9,9 @@ CommandMove::CommandMove(size_t n, size_t m){
 
 
 
-void CommandMove::apply(Editor* editor){
-    size_t i = editor->getCurrentPage() * 10 + 1;
-    ListNode* temp = editor->getCurrentPageNode();
+void CommandMove::apply(Editor& editor){
+    size_t i = editor.getCurrentPage() * 10 + 1;
+    ListNode* temp = editor.getCurrentPageNode();
     while (i < this->n){
         i += 1;
         temp = temp->getNext();
@@ -28,6 +28,6 @@ void CommandMove::apply(Editor* editor){
     insertCommand->apply(editor);
 }
 
-void CommandMove::reverseApply(Editor* editor){
+void CommandMove::reverseApply(Editor& editor){
 
 }
