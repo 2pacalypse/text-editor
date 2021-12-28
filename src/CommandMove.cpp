@@ -22,12 +22,13 @@ void CommandMove::apply(Editor& editor){
     }
     
     std::string movedText = temp->getText();
-    Command *deleteCommand = new CommandDelete(this->n);
-    Command *insertCommand = new CommandInsert(this->m, movedText);
-    deleteCommand->apply(editor);
-    insertCommand->apply(editor);
+    subcommand1 = new CommandDelete(this->n);
+    subcommand2 = new CommandInsert(this->m, movedText);
+    subcommand1->apply(editor);
+    subcommand2->apply(editor);
 }
 
 void CommandMove::reverseApply(Editor& editor){
-
+    subcommand2->reverseApply(editor);
+    subcommand1->reverseApply(editor);
 }
