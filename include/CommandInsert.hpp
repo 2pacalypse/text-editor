@@ -6,6 +6,7 @@ class CommandInsert : public Command{
     private:
         size_t n;
         std::string text;
+        size_t numLinesBeforeInsert;
     public:
         CommandInsert(size_t n, const std::string& text);
         void apply(Editor& editor);

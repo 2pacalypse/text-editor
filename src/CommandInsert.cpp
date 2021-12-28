@@ -5,7 +5,7 @@ CommandInsert::CommandInsert(size_t n, const std::string &text)
 {
     this->n = n;
     this->text = text;
-    
+
 }
 
 void CommandInsert::apply(Editor &editor)
@@ -13,6 +13,7 @@ void CommandInsert::apply(Editor &editor)
     if ((int)this->n <= 0){
         throw "Argument out of bounds.";
     }
+    this->numLinesBeforeInsert = editor.getNumLines();
     if (editor.getNumLines() < this->n)
     {
         while (editor.getNumLines() < this->n - 1)
@@ -52,6 +53,14 @@ void CommandInsert::apply(Editor &editor)
 
 void CommandInsert::reverseApply(Editor &editor)
 {
-    CommandDelete reverseCommand = CommandDelete(this->n);
-    reverseCommand.apply(editor);
+    if (numLinesBeforeInsert < this->n){
+        for (size_t i = this->n; i > this->numLinesBeforeInsert; i--){
+            CommandDelete reverseCommand = CommandDelete(i);
+            reverseCommand.apply(editor);
+        }
+    }else{
+        CommandDelete reverseCommand = CommandDelete(this->n);
+        reverseCommand.apply(editor);
+    }
+    
 }
