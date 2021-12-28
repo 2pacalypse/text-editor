@@ -13,6 +13,8 @@ void CommandOpen::apply(Editor& editor){
         while (std::getline(file, line)){
             editor.appendLine(line);
         }
+    }else{
+        throw "Cannot open the file.";
     }
 }
 

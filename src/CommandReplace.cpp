@@ -7,11 +7,21 @@ CommandReplace::CommandReplace(size_t n, const std::string& text){
 }
 
 void CommandReplace::apply(Editor& editor){
-    if (editor.getCurrentPage() * 10 + this->n - 1 < editor.getNumLines()){
+    if (this->n >= 1 && this->n <= editor.getNumLines()){
+
+        size_t i = editor.getCurrentPage() * 10 + 1;
         ListNode* temp = editor.getCurrentPageNode();
-        for (int i = 0; i < this->n - 1; i++)
-           temp = temp->getNext();
+        while (i < this->n){
+            i += 1;
+            temp = temp->getNext();
+        }
+        while (i > this->n){
+            i -= 1;
+            temp = temp->getPrev();
+        }
         temp->setText(this->text);
+    }else{
+        throw "Argument out of bounds.";
     }
 }
 

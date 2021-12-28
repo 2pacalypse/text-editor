@@ -9,9 +9,11 @@
 #include "../include/CommandInsert.hpp"
 #include "../include/CommandMove.hpp"
 #include <iostream>
+#include <stdexcept>
 
 void Runner::applyNextCommand()
 {
+    std::cout << "Enter Command: ";
     std::string commandName;
     std::cin >> commandName;
     Command *command;
@@ -80,14 +82,25 @@ void Runner::applyNextCommand()
     }
     else
     {
+        throw "Invalid Command.";
     }
 }
 
 void Runner::run()
 {
+    std::string lastOperationStatus;
     while (1)
     {
-        editor.printCurrentPage();
-        applyNextCommand();
+        try{
+            editor.printCurrentPage();
+            std::cout << "\n\n";
+            std::cout << "Last Operation Feedback: " << lastOperationStatus << '\n';
+            applyNextCommand();
+            lastOperationStatus = "Done!";
+            
+        }catch (const char* e){
+            lastOperationStatus = e;
+        }
+
     }
 }

@@ -9,7 +9,6 @@ Editor::Editor(){
     this->list = new LinkedList();
     this->currentPage = 0;
     this->currentPageNode = this->list->getHead()->getNext();
-
 }
 
 size_t Editor::getCurrentPage() const{
