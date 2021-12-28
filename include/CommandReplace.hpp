@@ -6,6 +6,7 @@ class CommandReplace : public Command{
     private:
         size_t n;
         std::string text;
+        std::string textBeforeReplace;
     public:
         CommandReplace(size_t n, const std::string& text);
         void apply(Editor& editor);

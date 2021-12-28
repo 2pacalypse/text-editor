@@ -52,6 +52,7 @@ void CommandDelete::apply(Editor &editor)
 
 void CommandDelete::reverseApply(Editor &editor)
 {
-    Command *reverseCommand = new CommandInsert(this->n, this->deletedText);
-    reverseCommand->apply(editor);
+    CommandInsert reverseCommand = CommandInsert(this->n, this->deletedText);
+    reverseCommand.apply(editor);
+
 }

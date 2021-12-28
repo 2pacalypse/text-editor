@@ -19,6 +19,7 @@ void CommandReplace::apply(Editor& editor){
             i -= 1;
             temp = temp->getPrev();
         }
+        this->textBeforeReplace = temp->getText();
         temp->setText(this->text);
     }else{
         throw "Argument out of bounds.";
@@ -26,5 +27,7 @@ void CommandReplace::apply(Editor& editor){
 }
 
 void CommandReplace::reverseApply(Editor& editor){
+    CommandReplace reverseCommand = CommandReplace(this->n, this->textBeforeReplace);
+    reverseCommand.apply(editor);
 
 }
