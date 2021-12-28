@@ -7,6 +7,11 @@ CommandMove::CommandMove(size_t n, size_t m){
     this->m = m;
 }
 
+CommandMove::~CommandMove(){
+    delete this->subcommand1;
+    delete this->subcommand2;
+}
+
 
 
 void CommandMove::apply(Editor& editor){

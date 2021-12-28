@@ -5,4 +5,5 @@
 int main(){
     Runner* runner = new Runner();
     runner->run();
+    delete runner;
 }

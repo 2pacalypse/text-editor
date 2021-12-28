@@ -12,6 +12,7 @@ class CommandMove : public Command{
         CommandInsert* subcommand2;
     public:
         CommandMove(size_t n, size_t m);
+        ~CommandMove();
         void apply(Editor& editor);
         void reverseApply(Editor& editor);  
 };

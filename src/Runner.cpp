@@ -87,6 +87,14 @@ void Runner::applyNextCommand()
         command = commandHistory.top();
         commandHistory.pop();
         command->reverseApply(editor);
+        delete command;
+    }
+    else if (commandName.compare("quit") == 0){
+        while(!this->commandHistory.empty()){
+            delete this->commandHistory.top();
+            this->commandHistory.pop(); 
+        }
+        throw std::runtime_error("Quit");
     }
     else
     {
@@ -108,6 +116,9 @@ void Runner::run()
             
         }catch (const char* e){
             lastOperationStatus = e;
+        }
+        catch (const std::runtime_error& e){
+            break;
         }
 
     }
