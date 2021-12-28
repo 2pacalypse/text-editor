@@ -8,6 +8,7 @@
 #include "../include/CommandDelete.hpp"
 #include "../include/CommandInsert.hpp"
 #include "../include/CommandMove.hpp"
+#include "../include/CommandSave.hpp"
 #include <iostream>
 #include <stdexcept>
 
@@ -27,6 +28,10 @@ void Runner::applyNextCommand()
     }
     else if (commandName.compare("save") == 0)
     {
+        std::string fileName;
+        std::cin >> fileName;
+        command = new CommandSave(fileName);
+        command->apply(editor);
     }
     else if (commandName.compare("insert") == 0)
     {
@@ -76,6 +81,9 @@ void Runner::applyNextCommand()
     }
     else if (commandName.compare("undo") == 0)
     {
+        if (commandHistory.size() == 0){
+            throw "No previous action to undo.";
+        }
         command = commandHistory.top();
         commandHistory.pop();
         command->reverseApply(editor);
