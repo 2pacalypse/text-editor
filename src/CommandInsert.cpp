@@ -11,6 +11,7 @@ CommandInsert::CommandInsert(size_t n, const std::string &text)
 void CommandInsert::apply(Editor &editor)
 {
     if ((int)this->n <= 0){
+        delete this;
         throw "Argument out of bounds.";
     }
     this->numLinesBeforeInsert = editor.getNumLines();

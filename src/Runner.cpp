@@ -25,6 +25,7 @@ void Runner::applyNextCommand()
         std::cin >> fileName;
         command = new CommandOpen(fileName);
         command->apply(editor);
+        delete command;
 
     }
     else if (commandName.compare("save") == 0)
@@ -33,6 +34,7 @@ void Runner::applyNextCommand()
         std::cin >> fileName;
         command = new CommandSave(fileName);
         command->apply(editor);
+        delete command;
     }
     else if (commandName.compare("insert") == 0)
     {
@@ -74,11 +76,13 @@ void Runner::applyNextCommand()
     {
         command = new CommandNext();
         command->apply(editor);
+        delete command;
     }
     else if (commandName.compare("prev") == 0)
     {
         command = new CommandPrev();
         command->apply(editor);
+        delete command;
     }
     else if (commandName.compare("undo") == 0)
     {
@@ -94,13 +98,6 @@ void Runner::applyNextCommand()
         while(!this->commandHistory.empty()){
             delete this->commandHistory.top();
             this->commandHistory.pop(); 
-        }
-        ListNode* temp = this->editor.getList()->getHead();
-        while (temp != this->editor.getList()->getTail()){
-            ListNode* saved = temp->getNext();
-            delete temp;
-            temp = saved;
-            this->editor.decrementNumLines();
         }
         throw std::runtime_error("Quit");
     }

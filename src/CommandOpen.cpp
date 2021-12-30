@@ -15,6 +15,7 @@ void CommandOpen::apply(Editor& editor){
             editor.appendLine(line);
         }
     }else{
+        delete this;
         throw "Cannot open the file.";
     }
 }

@@ -16,3 +16,11 @@ ListNode* LinkedList::getTail() const{
     return this->dummy_tail;
 }
 
+LinkedList::~LinkedList(){
+    ListNode *temp = dummy_head;
+    while (temp){
+        ListNode *saved = temp->getNext();
+        delete temp;
+        temp = saved;
+    }
+}

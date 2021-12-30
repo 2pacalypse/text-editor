@@ -113,9 +113,17 @@ void Editor::printCurrentPage() const
 
 void Editor::reset()
 {
-    delete list;
-    list = new LinkedList();
-    currentPageNode = nullptr;
+    if (list){
+        delete list;
+        list = new LinkedList();
+        this->currentPageNode = this->list->getHead()->getNext();
+    }
+    
+    
     currentPage = 0;
     numLines = 0;
+}
+
+Editor::~Editor(){
+    delete list;
 }

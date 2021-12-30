@@ -6,12 +6,13 @@
 #include <stack>
 class Editor{
     private:
-        LinkedList *list = nullptr;
-        ListNode* currentPageNode = nullptr;
+        LinkedList *list;
+        ListNode* currentPageNode;
         size_t currentPage = 0;
         size_t numLines = 0;
     public:
         Editor();
+        ~Editor();
         size_t getCurrentPage() const;
         size_t getNumLines() const;
         LinkedList* getList() const;

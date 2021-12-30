@@ -15,6 +15,7 @@ void CommandSave::apply(Editor& editor){
             temp = temp->getNext();
         }
     }else{
+        delete this;
         throw "Error writing output.";
     }
 }

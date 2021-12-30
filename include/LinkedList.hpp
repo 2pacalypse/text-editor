@@ -8,6 +8,7 @@ class LinkedList{
         ListNode *dummy_tail = nullptr;
     public:
         LinkedList();
+        ~LinkedList();
         ListNode* getHead() const;
         ListNode* getTail() const;
 

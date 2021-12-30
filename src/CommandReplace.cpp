@@ -22,6 +22,7 @@ void CommandReplace::apply(Editor& editor){
         this->textBeforeReplace = temp->getText();
         temp->setText(this->text);
     }else{
+        delete this;
         throw "Argument out of bounds.";
     }
 }

@@ -46,6 +46,7 @@ void CommandDelete::apply(Editor &editor)
     }
     else
     {
+        delete this;
         throw "Argument out of bounds.";
     }
 }

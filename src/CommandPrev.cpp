@@ -5,6 +5,7 @@ void CommandPrev::apply(Editor& editor){
         editor.setCurrentPage(editor.getCurrentPage() - 1);
         editor.decrementCurrentPageNode();
     }else{
+        delete this;
         throw "No previous page.";
     }
 

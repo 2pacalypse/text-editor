@@ -5,6 +5,7 @@ void CommandNext::apply(Editor& editor){
         editor.setCurrentPage(editor.getCurrentPage() + 1);
         editor.incrementCurrentPageNode();
     }else{
+        delete this;
         throw "No next page.";
     }
 
