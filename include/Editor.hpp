@@ -27,6 +27,7 @@ class Editor{
         void setCurrentPageNode(ListNode* node);
 
         void appendLine(const std::string& line);        
+        void reset();
 
         void printCurrentPage() const;
 

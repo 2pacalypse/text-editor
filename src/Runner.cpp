@@ -25,6 +25,7 @@ void Runner::applyNextCommand()
         std::cin >> fileName;
         command = new CommandOpen(fileName);
         command->apply(editor);
+
     }
     else if (commandName.compare("save") == 0)
     {
@@ -93,6 +94,13 @@ void Runner::applyNextCommand()
         while(!this->commandHistory.empty()){
             delete this->commandHistory.top();
             this->commandHistory.pop(); 
+        }
+        ListNode* temp = this->editor.getList()->getHead();
+        while (temp != this->editor.getList()->getTail()){
+            ListNode* saved = temp->getNext();
+            delete temp;
+            temp = saved;
+            this->editor.decrementNumLines();
         }
         throw std::runtime_error("Quit");
     }
