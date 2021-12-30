@@ -26,6 +26,10 @@ void Runner::applyNextCommand()
         command = new CommandOpen(fileName);
         command->apply(editor);
         delete command;
+        while(!this->commandHistory.empty()){
+            delete this->commandHistory.top();
+            this->commandHistory.pop(); 
+        }
 
     }
     else if (commandName.compare("save") == 0)
