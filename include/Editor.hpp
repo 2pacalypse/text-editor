@@ -4,53 +4,54 @@
 #include "LinkedList.hpp"
 #include <string>
 #include <stack>
-class Editor{
-    private:
-        // The lines of the text file is stored with a linked list.
-        LinkedList *list;
-        // The line at which the page starts. e.g. 1st, 11th, 21th, 31th node of the linked list.
-        // This has uses when the user switches pages.
-        ListNode* currentPageNode;
-        // The current page number.
-        size_t currentPage = 0;
-        // The total number of lines in the text.
-        size_t numLines = 0;
-    public:
-        // constructor
-        Editor();
-        // destructor
-        ~Editor();
-        // getters
-        size_t getCurrentPage() const;
-        size_t getNumLines() const;
-        LinkedList* getList() const;
-        ListNode* getCurrentPageNode() const;
-        
-        // setters
-        void setCurrentPage(size_t val);
-        void setNumLines(size_t val);
-        void setCurrentPageNode(ListNode* node);
+class Editor
+{
+private:
+    // The lines of the text file is stored with a linked list.
+    LinkedList *list;
+    // The line at which the page starts. e.g. 1st, 11th, 21th, 31th node of the linked list.
+    // This has uses when the user switches pages.
+    ListNode *currentPageNode;
+    // The current page number.
+    size_t currentPage = 0;
+    // The total number of lines in the text.
+    size_t numLines = 0;
 
-        // shortcut for numLines++
-        void incrementNumLines();
-        // shortcut for numLines--
-        void decrementNumLines();
+public:
+    // constructor
+    Editor();
+    // destructor
+    ~Editor();
+    // getters
+    size_t getCurrentPage() const;
+    size_t getNumLines() const;
+    LinkedList *getList() const;
+    ListNode *getCurrentPageNode() const;
 
-        // shortcut for going to the next page.
-        void incrementCurrentPageNode();
-        // shortcut for going to the previous page.
-        void decrementCurrentPageNode();
-        
-        // appends a line with the string content.
-        // useful when opening a new file.
-        void appendLine(const std::string& line); 
+    // setters
+    void setCurrentPage(size_t val);
+    void setNumLines(size_t val);
+    void setCurrentPageNode(ListNode *node);
 
-        //resets the state of this editor.
-        //useful when opening a file while another one is already open.      
-        void reset();
+    // shortcut for numLines++
+    void incrementNumLines();
+    // shortcut for numLines--
+    void decrementNumLines();
 
-        //prints the current page starting from the line pointed by currentPageNode.
-        void printCurrentPage() const;
+    // shortcut for going to the next page.
+    void incrementCurrentPageNode();
+    // shortcut for going to the previous page.
+    void decrementCurrentPageNode();
 
+    // appends a line with the string content.
+    // useful when opening a new file.
+    void appendLine(const std::string &line);
+
+    //resets the state of this editor.
+    //useful when opening a file while another one is already open.
+    void reset();
+
+    //prints the current page starting from the line pointed by currentPageNode.
+    void printCurrentPage() const;
 };
 #endif
