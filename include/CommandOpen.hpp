@@ -4,6 +4,7 @@
 #include <string>
 class CommandOpen : public Command{
     private:
+        // The filename to be opened.
         std::string fileName;
     public:
         CommandOpen(const std::string& filename);

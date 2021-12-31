@@ -14,6 +14,8 @@ void CommandInsert::apply(Editor &editor)
         delete this;
         throw "Argument out of bounds.";
     }
+
+
     this->numLinesBeforeInsert = editor.getNumLines();
     if (editor.getNumLines() < this->n)
     {
@@ -44,10 +46,16 @@ void CommandInsert::apply(Editor &editor)
         temp->getPrev()->setNext(node);
         temp->setPrev(node);
 
-        if (temp == editor.getCurrentPageNode())
-        {
-            editor.setCurrentPageNode(node);
+        if ((this->n - 1) / 10 < editor.getCurrentPage()){
+            editor.setCurrentPageNode(editor.getCurrentPageNode()->getPrev());
+        }else if ((this->n - 1) / 10 > editor.getCurrentPage()){
+
+        }else{
+            if (temp == editor.getCurrentPageNode()){
+                editor.setCurrentPageNode(node);
+            }
         }
+
         editor.incrementNumLines();
     }
 }

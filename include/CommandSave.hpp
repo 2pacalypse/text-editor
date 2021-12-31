@@ -4,6 +4,7 @@
 #include <string>
 class CommandSave : public Command{
     private:
+        // The filename for the save.
         std::string fileName;
     public:
         CommandSave(const std::string& filename);

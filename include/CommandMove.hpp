@@ -6,8 +6,11 @@
 
 class CommandMove : public Command{
     private:
+        // The line number from which the text moves.
         size_t n;
+        // The line number to which the text moves.
         size_t m;
+        // Move is modeled as first deletion and then insertion.
         CommandDelete* subcommand1;
         CommandInsert* subcommand2;
     public:
