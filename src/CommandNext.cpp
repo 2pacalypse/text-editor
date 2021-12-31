@@ -1,16 +1,19 @@
 #include "../include/CommandNext.hpp"
 
-void CommandNext::apply(Editor& editor){
-    if ((editor.getCurrentPage() + 1) * 10 < editor.getNumLines()){
+void CommandNext::apply(Editor &editor)
+{
+    if ((editor.getCurrentPage() + 1) * 10 < editor.getNumLines())
+    {
         editor.setCurrentPage(editor.getCurrentPage() + 1);
         editor.incrementCurrentPageNode();
-    }else{
+    }
+    else
+    {
         delete this;
         throw "No next page.";
     }
-
 }
 
-void CommandNext::reverseApply(Editor& editor){
-
+void CommandNext::reverseApply(Editor &editor)
+{
 }

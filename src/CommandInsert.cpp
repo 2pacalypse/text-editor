@@ -5,16 +5,15 @@ CommandInsert::CommandInsert(size_t n, const std::string &text)
 {
     this->n = n;
     this->text = text;
-
 }
 
 void CommandInsert::apply(Editor &editor)
 {
-    if ((int)this->n <= 0){
+    if ((int)this->n <= 0)
+    {
         delete this;
         throw "Argument out of bounds.";
     }
-
 
     this->numLinesBeforeInsert = editor.getNumLines();
     if (editor.getNumLines() < this->n)
@@ -46,12 +45,17 @@ void CommandInsert::apply(Editor &editor)
         temp->getPrev()->setNext(node);
         temp->setPrev(node);
 
-        if ((this->n - 1) / 10 < editor.getCurrentPage()){
+        if ((this->n - 1) / 10 < editor.getCurrentPage())
+        {
             editor.setCurrentPageNode(editor.getCurrentPageNode()->getPrev());
-        }else if ((this->n - 1) / 10 > editor.getCurrentPage()){
-
-        }else{
-            if (temp == editor.getCurrentPageNode()){
+        }
+        else if ((this->n - 1) / 10 > editor.getCurrentPage())
+        {
+        }
+        else
+        {
+            if (temp == editor.getCurrentPageNode())
+            {
                 editor.setCurrentPageNode(node);
             }
         }
@@ -62,14 +66,17 @@ void CommandInsert::apply(Editor &editor)
 
 void CommandInsert::reverseApply(Editor &editor)
 {
-    if (numLinesBeforeInsert < this->n){
-        for (size_t i = this->n; i > this->numLinesBeforeInsert; i--){
+    if (numLinesBeforeInsert < this->n)
+    {
+        for (size_t i = this->n; i > this->numLinesBeforeInsert; i--)
+        {
             CommandDelete reverseCommand = CommandDelete(i);
             reverseCommand.apply(editor);
         }
-    }else{
+    }
+    else
+    {
         CommandDelete reverseCommand = CommandDelete(this->n);
         reverseCommand.apply(editor);
     }
-    
 }

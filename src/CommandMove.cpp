@@ -2,30 +2,33 @@
 #include "../include/CommandDelete.hpp"
 #include "../include/CommandInsert.hpp"
 
-CommandMove::CommandMove(size_t n, size_t m){
+CommandMove::CommandMove(size_t n, size_t m)
+{
     this->n = n;
     this->m = m;
 }
 
-CommandMove::~CommandMove(){
+CommandMove::~CommandMove()
+{
     delete this->subcommand1;
     delete this->subcommand2;
 }
 
-
-
-void CommandMove::apply(Editor& editor){
+void CommandMove::apply(Editor &editor)
+{
     size_t i = editor.getCurrentPage() * 10 + 1;
-    ListNode* temp = editor.getCurrentPageNode();
-    while (i < this->n){
+    ListNode *temp = editor.getCurrentPageNode();
+    while (i < this->n)
+    {
         i += 1;
         temp = temp->getNext();
     }
-    while (i > this->n){
+    while (i > this->n)
+    {
         i -= 1;
         temp = temp->getPrev();
     }
-    
+
     std::string movedText = temp->getText();
     subcommand1 = new CommandDelete(this->n);
     subcommand2 = new CommandInsert(this->m, movedText);
@@ -33,7 +36,8 @@ void CommandMove::apply(Editor& editor){
     subcommand2->apply(editor);
 }
 
-void CommandMove::reverseApply(Editor& editor){
+void CommandMove::reverseApply(Editor &editor)
+{
     subcommand2->reverseApply(editor);
     subcommand1->reverseApply(editor);
 }

@@ -1,24 +1,31 @@
 #include "../include/ListNode.hpp"
 
-ListNode::ListNode(const std::string& text){
+ListNode::ListNode(const std::string &text)
+{
     this->text = text;
 }
-ListNode* ListNode::getNext() const{
+ListNode *ListNode::getNext() const
+{
     return this->next;
 }
-ListNode* ListNode::getPrev() const{
+ListNode *ListNode::getPrev() const
+{
     return this->prev;
 }
-std::string ListNode::getText() const{
+std::string ListNode::getText() const
+{
     return this->text;
 }
-void ListNode::setNext(ListNode* next){
+void ListNode::setNext(ListNode *next)
+{
     this->next = next;
 }
-void ListNode::setPrev(ListNode *prev){
+void ListNode::setPrev(ListNode *prev)
+{
     this->prev = prev;
 }
 
-void ListNode::setText(const std::string& text){
+void ListNode::setText(const std::string &text)
+{
     this->text = text;
 }

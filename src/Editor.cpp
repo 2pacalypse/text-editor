@@ -42,6 +42,11 @@ void Editor::setNumLines(size_t val)
     this->numLines = val;
 }
 
+void Editor::setCurrentPageNode(ListNode *node)
+{
+    this->currentPageNode = node;
+}
+
 void Editor::incrementNumLines()
 {
     this->numLines++;
@@ -52,6 +57,7 @@ void Editor::decrementNumLines()
     this->numLines--;
 }
 
+// append a line to the linked list
 void Editor::appendLine(const std::string &line)
 {
     ListNode *node = new ListNode(line);
@@ -67,6 +73,7 @@ void Editor::appendLine(const std::string &line)
     this->incrementNumLines();
 }
 
+//useful for doing next
 void Editor::incrementCurrentPageNode()
 {
     ListNode *temp = this->currentPageNode;
@@ -75,6 +82,7 @@ void Editor::incrementCurrentPageNode()
     this->currentPageNode = temp;
 }
 
+//useful for doing prev
 void Editor::decrementCurrentPageNode()
 {
     ListNode *temp = this->currentPageNode;
@@ -83,11 +91,11 @@ void Editor::decrementCurrentPageNode()
     this->currentPageNode = temp;
 }
 
-void Editor::setCurrentPageNode(ListNode *node)
-{
-    this->currentPageNode = node;
-}
-
+// always clear the terminal
+// then print the current page
+// if the current page is less than
+// the number of line that should be printed,
+// print a placeholder char
 void Editor::printCurrentPage() const
 {
     system("clear||cls");
@@ -111,19 +119,23 @@ void Editor::printCurrentPage() const
     }
 }
 
+//delete the old list
+//and assign a new list.
 void Editor::reset()
 {
-    if (list){
+    if (list)
+    {
         delete list;
         list = new LinkedList();
         this->currentPageNode = this->list->getHead()->getNext();
     }
-    
-    
+
     currentPage = 0;
     numLines = 0;
 }
 
-Editor::~Editor(){
+//destructor
+Editor::~Editor()
+{
     delete list;
 }

@@ -1,16 +1,19 @@
 #include "../include/CommandPrev.hpp"
 
-void CommandPrev::apply(Editor& editor){
-    if (editor.getCurrentPage() > 0){
+void CommandPrev::apply(Editor &editor)
+{
+    if (editor.getCurrentPage() > 0)
+    {
         editor.setCurrentPage(editor.getCurrentPage() - 1);
         editor.decrementCurrentPageNode();
-    }else{
+    }
+    else
+    {
         delete this;
         throw "No previous page.";
     }
-
 }
 
-void CommandPrev::reverseApply(Editor& editor){
-
+void CommandPrev::reverseApply(Editor &editor)
+{
 }
