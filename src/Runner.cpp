@@ -165,6 +165,9 @@ void Runner::run()
         {
             editor.printCurrentPage();
             std::cout << "\n\n";
+            std::cout << "# of Lines: " << editor.getNumLines() << '\n';
+            std::cout << "Current Page: " << editor.getCurrentPage() + 1 << '/' << editor.getNumLines() / editor.getNumLinesPerPage() + 1 << '\n';
+            std::cout << "\n";
             std::cout << "Last Operation Feedback: " << lastOperationStatus << '\n';
 
             // this waits for user input and if the given command cannot be applied

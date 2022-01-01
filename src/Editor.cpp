@@ -108,7 +108,10 @@ void Editor::printCurrentPage() const
     int lineNumber = this->currentPage * numLinesPerPage + 1;
     while (i < numLinesPerPage && temp != this->list->getTail())
     {
-        std::cout << std::left << std::setw(10) << std::to_string(lineNumber) + ')';
+        std::string fill;
+        fill = (char) 178;
+
+        std::cout << std::left << std::setw(8) <<  fill + ' ' +  std::to_string(lineNumber) + ')';
         std::cout << temp->getText() << '\n';
         i += 1;
         lineNumber += 1;
@@ -116,8 +119,10 @@ void Editor::printCurrentPage() const
     }
     while (i < numLinesPerPage)
     {
-        std::cout << std::left << std::setw(10) << std::to_string(lineNumber) + ')';
-        std::cout << "\xed\xed\xed\xed" << '\n';
+        std::string empty;
+        empty = (char) 176;
+        std::cout << std::left << std::setw(8) << empty + ' ' +  std::to_string(lineNumber) + ')';
+        std::cout << '\n';
         i += 1;
         lineNumber += 1;
     }
