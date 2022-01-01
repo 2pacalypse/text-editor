@@ -2,7 +2,7 @@
 
 Simple Text Editor project for a data structures course. Written in C++, it is a command line application with basic functionalities.
 
-![Editor right after opening.](.\images\opened.png)
+![Editor right after opening.](https://github.com/2pacalypse/text-editor/blob/main/images/opened.png)
 
 ## Compilation
 
@@ -130,7 +130,9 @@ The reverse operation uses the logic for the `CommandReplace::apply` instead of 
 
 ## Screenshots
 
-![Error after trying to next.](.\images\nonextpage.PNG)
+![Error after trying to next.](https://github.com/2pacalypse/text-editor/blob/main/images/nonextpage.PNG)
 
-![Out of bounds error after trying to delete.](.\images\deleteoob.PNG)
+![Out of bounds error after trying to delete.](https://github.com/2pacalypse/text-editor/blob/main/images/deleteoob.PNG)
+
+
 
