@@ -135,4 +135,4 @@ The reverse operation uses the logic for the `CommandReplace::apply` instead of 
 
 ![Out of bounds error after trying to delete.](images/deleteoob.PNG)
 
-![Error after undo.](images\undo.PNG)
+![Error after undo.](images/undo.PNG)
