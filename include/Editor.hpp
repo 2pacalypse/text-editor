@@ -16,8 +16,8 @@ private:
     size_t currentPage = 0;
     // The total number of lines in the text.
     size_t numLines = 0;
-
-    const size_t numLinesPerPage = 20;
+    // The number of lines that should be displayed in each page.
+    const size_t numLinesPerPage = 10;
 
 public:
     // constructor

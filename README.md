@@ -97,7 +97,32 @@ public:
 
 This class is the one running the program from the `main.cpp`. The first member function runs an infinite loop continuously to print to standard output and read from the standard input. Taking the user input is done with the helper function `applyNextCommand` inside the `run`. The helper function creates a suitable command such as `CommandReplace`, `CommandDelete`, tries to apply the command, and pushes it to the history stack if the operation was successful.  Then, when the user wants to undo the last action, we pop the last action, which is a `Command*`. Calling `reverseApply` on this base pointer invokes the`reverseApply` method of the derived class. This is the reason we use virtual functions.
 
+Each child command then stores relevant data so that both `apply` and `reverseApply` works as they are supposed to. For example, `CommandReplace` has the following declaration.
 
+```c++
+class CommandReplace : public Command
+{
+private:
+    size_t n; // The line number at which the text gets replaced.
+    std::string text; // The replacement text for the line.
+    std::string textBeforeReplace; // The text before the replacement for the reverse operation.
+    
+public:
+    CommandReplace(size_t n, const std::string &text);
+    void apply(Editor &editor);
+    void reverseApply(Editor &editor);
+};
+```
 
+Then for the reverse operation, one can make use of the work that has already been done like this:
 
+```c++
+void CommandReplace::reverseApply(Editor &editor)
+{
+    CommandReplace reverseCommand = CommandReplace(this->n, this->textBeforeReplace);
+    reverseCommand.apply(editor);
+}
+```
+
+The reverse operation uses the logic for the `CommandReplace::apply` instead of writing the code from the scratch. The same reasoning suggests using  `CommandInsert::apply` for `CommandDelete::reverseApply`  and vice versa. This way we leverage modularity.
 
