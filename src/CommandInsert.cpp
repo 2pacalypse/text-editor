@@ -26,7 +26,7 @@ void CommandInsert::apply(Editor &editor)
     }
     else
     {
-        size_t i = editor.getCurrentPage() * 10 + 1;
+        size_t i = editor.getCurrentPage() * editor.getNumLinesPerPage() + 1;
         ListNode *temp = editor.getCurrentPageNode();
         while (i < this->n)
         {
@@ -45,11 +45,11 @@ void CommandInsert::apply(Editor &editor)
         temp->getPrev()->setNext(node);
         temp->setPrev(node);
 
-        if ((this->n - 1) / 10 < editor.getCurrentPage())
+        if ((this->n - 1) / editor.getNumLinesPerPage() < editor.getCurrentPage())
         {
             editor.setCurrentPageNode(editor.getCurrentPageNode()->getPrev());
         }
-        else if ((this->n - 1) / 10 > editor.getCurrentPage())
+        else if ((this->n - 1) / editor.getNumLinesPerPage() > editor.getCurrentPage())
         {
         }
         else

@@ -32,6 +32,10 @@ ListNode *Editor::getCurrentPageNode() const
     return this->currentPageNode;
 }
 
+size_t Editor::getNumLinesPerPage() const{
+    return this->numLinesPerPage;
+}
+
 void Editor::setCurrentPage(size_t val)
 {
     this->currentPage = val;
@@ -77,7 +81,7 @@ void Editor::appendLine(const std::string &line)
 void Editor::incrementCurrentPageNode()
 {
     ListNode *temp = this->currentPageNode;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < numLinesPerPage; i++)
         temp = temp->getNext();
     this->currentPageNode = temp;
 }
@@ -86,7 +90,7 @@ void Editor::incrementCurrentPageNode()
 void Editor::decrementCurrentPageNode()
 {
     ListNode *temp = this->currentPageNode;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < numLinesPerPage; i++)
         temp = temp->getPrev();
     this->currentPageNode = temp;
 }
@@ -101,8 +105,8 @@ void Editor::printCurrentPage() const
     system("clear||cls");
     int i = 0;
     ListNode *temp = this->currentPageNode;
-    int lineNumber = this->currentPage * 10 + 1;
-    while (i < 10 && temp != this->list->getTail())
+    int lineNumber = this->currentPage * numLinesPerPage + 1;
+    while (i < numLinesPerPage && temp != this->list->getTail())
     {
         std::cout << std::left << std::setw(10) << std::to_string(lineNumber) + ')';
         std::cout << temp->getText() << '\n';
@@ -110,7 +114,7 @@ void Editor::printCurrentPage() const
         lineNumber += 1;
         temp = temp->getNext();
     }
-    while (i < 10)
+    while (i < numLinesPerPage)
     {
         std::cout << std::left << std::setw(10) << std::to_string(lineNumber) + ')';
         std::cout << "####" << '\n';

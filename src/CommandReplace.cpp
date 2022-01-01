@@ -12,7 +12,7 @@ void CommandReplace::apply(Editor &editor)
     if (this->n >= 1 && this->n <= editor.getNumLines())
     {
 
-        size_t i = editor.getCurrentPage() * 10 + 1;
+        size_t i = editor.getCurrentPage() * editor.getNumLinesPerPage() + 1;
         ListNode *temp = editor.getCurrentPageNode();
         while (i < this->n)
         {

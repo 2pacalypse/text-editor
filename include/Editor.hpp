@@ -17,6 +17,8 @@ private:
     // The total number of lines in the text.
     size_t numLines = 0;
 
+    const size_t numLinesPerPage = 20;
+
 public:
     // constructor
     Editor();
@@ -27,6 +29,7 @@ public:
     size_t getNumLines() const;
     LinkedList *getList() const;
     ListNode *getCurrentPageNode() const;
+    size_t getNumLinesPerPage() const;
 
     // setters
     void setCurrentPage(size_t val);

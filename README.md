@@ -57,10 +57,11 @@ private:
     ListNode *currentPageNode;
     size_t currentPage = 0;
     size_t numLines = 0;
+    const size_t numLinesPerPage = 10;
 };
 ```
 
-Here each node of the linked list stores a line from the opened file as explained before. Furthermore, a pointer to the first node of the current page, the number of the current page (0-indexed), and the total number of nodes (lines) is stored. The extra pointer to the first node is useful because:
+Here each node of the linked list stores a line from the opened file as explained before. Furthermore, a pointer to the first node of the current page, the index of the current page (0-indexed), the total number of nodes (lines), and also the number of lines that should be displayed in each page is stored. The extra pointer to the first node is useful because:
 
 - When commands try to delete or insert a line, the desired node is accessed by walking from this pointer. 
 - When the user wants to visit the next or previous page, they are just a fixed length (10 in our case) of nodes away from this pointer.
@@ -95,6 +96,8 @@ public:
 ```
 
 This class is the one running the program from the `main.cpp`. The first member function runs an infinite loop continuously to print to standard output and read from the standard input. Taking the user input is done with the helper function `applyNextCommand` inside the `run`. The helper function creates a suitable command such as `CommandReplace`, `CommandDelete`, tries to apply the command, and pushes it to the history stack if the operation was successful.  Then, when the user wants to undo the last action, we pop the last action, which is a `Command*`. Calling `reverseApply` on this base pointer invokes the`reverseApply` method of the derived class. This is the reason we use virtual functions.
+
+
 
 
 

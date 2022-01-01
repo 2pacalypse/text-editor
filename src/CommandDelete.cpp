@@ -13,7 +13,7 @@ void CommandDelete::apply(Editor &editor)
         delete this;
         throw "Argument out of bounds.";
     }
-    size_t i = editor.getCurrentPage() * 10 + 1;
+    size_t i = editor.getCurrentPage() * editor.getNumLinesPerPage() + 1;
     ListNode *temp = editor.getCurrentPageNode();
     while (i < this->n)
     {
@@ -27,7 +27,7 @@ void CommandDelete::apply(Editor &editor)
     }
     this->deletedText = temp->getText();
 
-    if ((this->n - 1) / 10 < editor.getCurrentPage())
+    if ((this->n - 1) / editor.getNumLinesPerPage() < editor.getCurrentPage())
     {
         if (editor.getCurrentPageNode()->getNext() != editor.getList()->getTail())
         {
@@ -39,7 +39,7 @@ void CommandDelete::apply(Editor &editor)
             editor.setCurrentPage(editor.getCurrentPage() - 1);
         }
     }
-    else if ((this->n - 1) / 10 > editor.getCurrentPage())
+    else if ((this->n - 1) / editor.getNumLinesPerPage() > editor.getCurrentPage())
     {
     }
     else
