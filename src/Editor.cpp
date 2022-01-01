@@ -1,9 +1,19 @@
+#ifdef _WIN32
+#define EMPTY_MARKER "\xb0"
+#define ACTIVE_MARKER "\xb2"
+#endif
+#ifdef linux
+#define EMPTY_MARKER "\u2591"
+#define ACCTIVE_MARKER "\u2593"
+#endif
+
 #include "../include/Editor.hpp"
 #include "../include/LinkedList.hpp"
 #include "../include/ListNode.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <iomanip>
+#include <cstdio>
 
 Editor::Editor()
 {
@@ -109,7 +119,7 @@ void Editor::printCurrentPage() const
     while (i < numLinesPerPage && temp != this->list->getTail())
     {
         std::string fill;
-        fill = (char) 178;
+        fill = ACTIVE_MARKER;
 
         std::cout << std::left << std::setw(8) <<  fill + ' ' +  std::to_string(lineNumber) + ')';
         std::cout << temp->getText() << '\n';
@@ -120,7 +130,7 @@ void Editor::printCurrentPage() const
     while (i < numLinesPerPage)
     {
         std::string empty;
-        empty = (char) 176;
+        empty = EMPTY_MARKER;
         std::cout << std::left << std::setw(8) << empty + ' ' +  std::to_string(lineNumber) + ')';
         std::cout << '\n';
         i += 1;
