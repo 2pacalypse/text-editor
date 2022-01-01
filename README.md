@@ -20,7 +20,7 @@ Simple Text Editor project for a data structures course. Written in C++, it is a
 | `replace n text` | Replaces the n<sup>th</sup> line with the text provided.     | Informs the user if $n \leq 0$ or $n > t$ when $t $ is the total number of lines in the file. | :white_check_mark:        |
 | `next`           | Displays the next page.                                      | Informs the user when there are no more next pages.          | :x:                       |
 | `prev`           | Displays the previous page.                                  | Informs the user when there are no more previous pages.      | :x:                       |
-| `undo`           | Reverts the last action taken.                               | Only a subset of the actions are taken into account.         | :x:                       |
+| `undo`           | Reverts the last action taken.                               | Only a subset of the actions are taken into account. <br />Informs the user when there are no more actions to undo. | :x:                       |
 
 ## Design
 
@@ -79,4 +79,22 @@ public:
     virtual ~Command(){};
 };
 ```
+
+This base class has pure virtual functions, making it an abstract class. If any of the derived classes do not implement the `apply` or `reverseApply`, they become abstract and cannot be instantiated too. The idea here is to access each command with the base pointer `Command*` and take advantage of  the run-time polymorphism. This is understood better when having a look at the `Runner` class.
+
+```c++
+class Runner
+{
+private:
+    Editor editor;
+    std::stack<Command *> commandHistory;
+public:
+    void run();
+    void applyNextCommand();
+};
+```
+
+This class is the one running the program from the `main.cpp`. The first member function runs an infinite loop continuously to print to standard output and read from the standard input. Taking the user input is done with the helper function `applyNextCommand` inside the `run`.
+
+Having a look at the data members, we push a subset of the operations to a history stack. Then, when the user wants to undo the last action, we pop the last action, which is a `Command*`. Calling `reverseApply` on this base pointer invokes the`reverseApply` method of the derived class.
 
