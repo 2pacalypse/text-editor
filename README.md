@@ -23,6 +23,7 @@ Simple Text Editor project for a data structures course. Written in C++, it is a
 | `next`           | Displays the next page.                                      | Informs the user when there are no more next pages.          | :x:                       |
 | `prev`           | Displays the previous page.                                  | Informs the user when there are no more previous pages.      | :x:                       |
 | `undo`           | Reverts the last action taken.                               | Only a subset of the actions are taken into account. <br />Informs the user when there are no more actions to undo. | :x:                       |
+| `quit`           | Exits the program after freeing memory.                      |                                                              |                           |
 
 ## Design
 
@@ -134,5 +135,4 @@ The reverse operation uses the logic for the `CommandReplace::apply` instead of 
 
 ![Out of bounds error after trying to delete.](images/deleteoob.PNG)
 
-
-
+![Error after undo.](images\undo.PNG)
