@@ -117,7 +117,7 @@ void Editor::printCurrentPage() const
     while (i < numLinesPerPage)
     {
         std::cout << std::left << std::setw(10) << std::to_string(lineNumber) + ')';
-        std::cout << "####" << '\n';
+        std::cout << "\xed\xed\xed\xed" << '\n';
         i += 1;
         lineNumber += 1;
     }
