@@ -4,7 +4,7 @@
 #endif
 #ifdef linux
 #define EMPTY_MARKER "\u2591"
-#define ACCTIVE_MARKER "\u2593"
+#define ACTIVE_MARKER "\u2593"
 #endif
 
 #include "../include/Editor.hpp"
