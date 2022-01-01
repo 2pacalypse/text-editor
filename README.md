@@ -2,6 +2,8 @@
 
 Simple Text Editor project for a data structures course. Written in C++, it is a command line application with basic functionalities.
 
+![Editor right after opening.](D:\murat\desktop\project\images\opened.png)
+
 ## Compilation
 
 - `g++ ./include/*.hpp ./src/*.cpp main.cpp -o editor`. 
@@ -125,4 +127,10 @@ void CommandReplace::reverseApply(Editor &editor)
 ```
 
 The reverse operation uses the logic for the `CommandReplace::apply` instead of writing the code from the scratch. The same reasoning suggests using  `CommandInsert::apply` for `CommandDelete::reverseApply`  and vice versa. This way we leverage modularity.
+
+## Screenshots
+
+![Error after trying to next.](D:\murat\desktop\project\images\nonextpage.PNG)
+
+![Out of bounds error after trying to delete.](D:\murat\desktop\project\images\deleteoob.PNG)
 
